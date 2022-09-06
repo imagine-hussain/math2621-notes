@@ -1,0 +1,635 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%   Package Preamble  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt, letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{fancyhdr}
+\usepackage[utf8]{inputenc}
+\usepackage{dirtytalk}                      % \say command for quotes
+\usepackage{ wasysym }
+\usepackage{graphicx}
+
+\usepackage[pdftitle=Higher Complex Analysis]{hyperref}
+\hypersetup {                                % Formatting for hyperlinks
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+    }
+    
+\graphicspath{}								% Path for images
+
+\pagestyle{fancy}
+\setlength{\headheight}{15pt}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}	
+\title{Higher Complex Analysis}
+\author{Hussain Nawaz \\ hussain.nwz000@gmail.com}
+\date{2021 T3}
+
+\rhead{}
+\lhead{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%    Document Contents    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+    \section{Assumed Knowledge}
+    \begin{itemize}
+        \item Arithmetic of complex numbers
+        \item Cartesian and Polar representation
+        \item Argand Diagram
+        \item de Moivre's Theorem
+        \item Extracting \(n\)-th roots
+    \end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \section{Inequalities and Sets}
+    \subsection{Triangle Inequalities}
+    \paragraph{The triangle inequality} For all \(w, z\in \mathbb{C}\),
+    \[ |w + z| \leq |w| + |z|.\]
+    This can be generalised for an arbitrary amount of complex numbers such that
+    \[|z_0 + z_1 + z_2 + \dots z_n| \leq |z_0| + |z_1| + |z_2| + \dots |z_n|.\]
+
+    \paragraph{Reverse Triangle Inequality}
+    For all \(w, z\in \mathbb{C}\),
+    \[||w|-|z|| \leq |w-z|.\]
+   
+    \paragraph{Lemma} For all real \(\theta\),
+    \[|e^{i\theta} - 1 | \leq |\theta|.\]
+
+    \subsection{Sets}
+    \paragraph{Open Ball}
+    The open ball with center \(z_0\) and radius \(\epsilon\), \(\mathrm{B}(z_0, \epsilon\) is the set,
+    \[\{z\in \mathbb{C}: |z-z_0| < \epsilon\}.\]
+    
+    \paragraph{Types of Points} For any point \(z\) in \(mathbb{C}\), there are 3 mutually exclusive and exhaustive possibilities:
+    \begin{itemize}
+        \item Interior Point,
+        \item Boundary Point,
+        \item Exterior Point.
+    \end{itemize}
+    
+    \paragraph{Types of Sets}
+    \begin{itemize}
+        \item A set is \textbf{open} if all of its points are interior points.
+        \item A set is \textbf{closed} if it contains all of its boundary points or, its complement is open.
+        \item The \textbf{closure} of a set \(S\) written as \(\bar{S}\) is the set plus its boundary points.
+        \item A set \(S\) is \textbf{bounded} if \(S\subseteq B(0, R)\) for some real \(R\).
+        \item A set \(S\) is \textbf{compact} if it is both closed and bounded.
+        \item A set is a \textbf{region} if it is an open set, with some, none, or all of its boundary points.
+    \end{itemize}
+
+    \paragraph{Paths}
+    A polygonal path is a sequence of line segments such that the end point of one line is the start point of the next line.
+    A \underline{simple, closed} path is one that does not cross itself and, has the feature that its final point is the same as its initial point.
+    The complement of a simple closed path has two pieces. A bounded interior and unbounded exterior.
+    \begin{itemize}
+        \item A set is \textbf{path connected} if and two points in the set can by joined by a path within that set.
+        \item A set is \textbf{simply connected} if it is connected and the interior of every connected path remains entirely within the set. In other words, the set has no holes.
+        \item The set is a \textbf{domain} if it is open and path connected.
+    \end{itemize} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \section{Functions of a Complex Variable}
+
+    Complex functions may be written as 
+    \[f(z) = f(x,y) = u(x, y) + iv(x, y).\]
+
+    \paragraph{The Fundamental Theorem Of Algebra}
+    Every non-constant complex polynomial of degree \(d\) factorizes uniquely. That is, there exist \(\alpha_1, \alpha_2 \dots alpha_d\) such that 
+    \[p(z) = c\prod_{j=1}^{d} (z-\alpha_j).\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \section{Fractional Linear Transformations}
+    \subsection{Introduction to FLTs}
+    
+    Fractional Linear Transformations (FLTs) are functions of the form
+    \[f(z) \frac{az+b}{cz+d}, \quad\quad a,b,c,d\in\mathbb{C}, \quad\quad ad-bc\neq 0.\]
+
+    They may be represented as a complex matrix \(M\) such that 
+    \[M = \begin{pmatrix} a & b \\ c & d \end{pmatrix}.\]
+
+    If the determinant of this matrix is zero, then the function is constant.
+
+    \paragraph{Factorising Matrices} Every \(2\times 2\) matrix may be written as a product of at most \(3\) matrices of the following two forms:
+    \[
+        \begin{pmatrix}
+            a & b \\ 0 & d
+        \end{pmatrix} 
+        \quad\quad \text{and} \quad \quad
+        \begin{pmatrix}
+            0 & 1 \\ -1 & 0
+        \end{pmatrix}.
+    \]
+    
+    \paragraph{Inverse of FLT}
+    Suppose that \[ w = \frac{az + b}{cz + d}.\]
+    Then, \[ z = \frac{dw - b}{a-cw}.\]
+    
+    \subsection{Images of FLTs}
+    \paragraph{Image Under a Line or Circle}
+    Let \(T_M\) be a fractional linear transformation. Then, the image of a line or a circle under \(T_M\) is either a line or a circle.
+    If \(\frac{-d}{c}\in \text{Domain}(T_M)\) then, the image of a FLT is a line.
+    Otherwise, the image is bounded and is thus a circle.
+    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    \section{Limits and Continuity}
+    \subsection{Limits}
+    Most rules from real numbers apply.
+    \paragraph{Uniqueness of Limit}
+    Suppose that \(f\) is a complex function and that \(z_0\in \text{Domain}(f^{-1}.\)
+    If \(\lim_{z\to z_0}\) exists, then it is unique.
+    
+    \subsection{Continuity}
+    \paragraph{Definition}
+    Suppose that \(f\) is a complex function.
+    \(f\) is continuous at the point \(z_0\) if \(f(z_0)\) is defined and
+    \(\lim_{z\to z_0} = f(z_0)\). The function if it is continuous on a set \(S\) is it is continuous at all points on its domain.
+    
+    \paragraph{Some Continous Functions}
+    The following functions are continuous for all \(z\in \mathbb{C}\) where \(z\neq 0\).
+    \begin{itemize}
+        \item \(z\mapsto z\)
+        \item \(z\mapsto |z|\)
+        \item \(z\mapsto \Re(z)\)
+        \item \(z\mapsto \Im(z)\)
+    \end{itemize}
+    
+    \paragraph{Composition of Continuous Functions} If \(c\int\mathbb{C}\), \(f, g\) are continuous functions \(S\mapsto \mathbb{C}\) then, 
+    \[cd, f + g, |f|, f, \Re{f}, \Im{f}\]
+    are continuous on \(S\) as well as \(\frac{f}{g}\) where \(g(z) \neq 0.\)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \section{Complex Differentiability}
+    Suppose that \(S \subseteq\mathbb{C}\) and that \(f : S \to C\) is a complex function.
+    Then we say that f is differentiable at the point \(z_0\) in \(S\) if
+    \[ 
+        \lim_{z\to z_0} \frac{f(z) - f(z_0)}{z-z_0}\]
+    exists and is finite. If so, then it is the derivative of \(f\) at \(z_0\).
+
+    \subsection{Cauchy-Reimann Equations}
+    If \(f\) is differentiable at every point of an open set, then the Cauchy-Reimann equations hold at every point of that set.
+    \paragraph{The equations}
+    \[
+        \frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}
+        \quad \quad \text{and} \quad \quad
+        \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}.
+    \]
+
+    \paragraph{The derivative in terms of \(u\) and \(v\)}
+    \[
+        f'(z) = u_x + i v_x = v_y  - i u_y.
+    \]
+    
+    \paragraph{Holomorphic Functions}
+    Suppose that \(\Omega\) is an open subset of \(\mathbb{C}\) and 
+    \(f: \Omega \to \mathbb{C}\) is a function. If \(f\) is differentiable
+    at every point of \(\Omega\) then, we say that \(f\) is \textbf{holomorphic}
+    or \textbf{complex analytic} or \textbf{analytic} in \(\Omega\).
+    If \(f\) is analytic on the entire complex plane then, it is \textbf{entire.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+    \section{Harmonic Functions}
+    \paragraph{Definition}
+    Suppose that \(u: \Omega \to \mathbb{R}\) is a function where \(\Omega\)
+    is an open subset of \(\mathbb{R}^2\) and, that \(u\) is twice continuously 
+    differentiable. \(u\) is harmonic if, it satisfies \textit{Laplace's Equation}:    
+    \[
+        \frac{\partial^2 u}{\partial x^2} +  \frac{\partial^2 u}{\partial y^2}
+        = 0.
+    \]
+
+    \paragraph{Harmonic and Holomorphic Functions} To find a harmonic function,
+    it is sufficient to find a holomorphic function.
+    Suppose that \(f\int H(\Omega)\) where \(\Omega\) is an open subset of 
+    \(\mathbb{C}\), that \(f\) is twice continuously differentiable and that
+    \[f(x + iy) = u(x, y) + iv(x, y)\]
+    for all \(x+iy\in\Omega\) where \(u\) and \(v\) are real-valued.
+    Then \(u\) and \(v\) are harmonic functions.
+
+    \paragraph{Infinite Differentiability}
+    For the above, the twice differentiable requirement is redundant since, if 
+    \(f\in H(\Omega) then,\) \(f\) is infinitely differentiable on \(\Omega\).
+    
+    \paragraph{Harmonic Conjugate}
+    If \(\Omega\) is a simply connected domain, and \(u: \Omega \to \mathbb{R}\)
+    is harmonic then, there exists a harmonic function \(v: \Omega \to \mathbb{R}\)
+    such that \(f\) given by 
+    \[
+        f(x + iy) = u(x,y) + iv(x,y)
+    \] in \(\Omega\) is holomorphic. In fact, any such functions \(v\)
+    differ only by a complex constant.
+    This function \(v\) is called the \textbf{harmonic conjugate} of \(u\)
+
+    \paragraph{Function From Harmonic Components}
+    If \(u, v\) is found then, you may evaluate \(f(z, 0)\) in place of 
+    \(f(x, y)\) and allow that to be your \(f(z)\) due to analytic continuity.
+    See more about this later.
+    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    \section{Power Series}
+    \subsection{Definition and Convergence}
+    
+    \paragraph{Definition}
+    A complex power series is an expression of the form
+    \[\sum_{n=0}^{\infty} a_n \left( z-z_0\right),\]
+    centered at \(z_0\) where, \(a_n\) are all fixed complex numbers.
+
+    \paragraph{Ratio Test}
+    The radius of convergence \(p\), may be found as 
+    \[p = \lim_{n\to\infty} \frac{|a_n|}{a_{n+1}}\]
+    as long as the limit exists or, is \(+\infty\).
+    
+    \paragraph{Root Test} The radius of convergence \(p\) is given by
+    \[p = \lim_{n\to\infty} \frac{1}{|a_n|^\frac{1}{n}}\]
+    as long as the limit exists or, is \(+\infty\).
+    \newline\indent
+    In other to use the root test for coefficients with factorials,
+    \textbf{Stirling'g formula} may be useful.
+    \[
+        \lim_{n\to\infty} \frac{1}{\ln((2\pi)^1/2 e^{-n} n^{n+1/2})} = 1
+        \text{ and }
+        \lim_{n\to\infty} \frac{n!}{(2\pi)^{1/2} e^{-n} n^{n+1/2}} = 1.
+    \] 
+   
+    \subsection{Algebra and Calculus of Power Series}
+    Suppose that both power series
+    \[f(z) = \sum_{n=0}^\infty a_n (z-z_0)^n
+    \quad \text{and} \quad g(z) = \sum_{n=0}^\infty b_n (z-z_0)^n \]
+    converge in \(B(z_0, p\). Then, the following series also converge in 
+    \(B(z_0, p)\):
+    \begin{enumerate}
+        \item \(\sum ca_n(z-z_0)^ n= c\sum a_n(z-z_0)^n\)
+        \item \(\sum (a_n + b_n)(z-z_0)^n = \sum a_n(z-z_0)^n + \sum b_n(z-z_0)^n\)
+        \item \(\sum_{n=0}^{\infty} a_n(z-z_0)^n \times \sum b_n(z-z_0)^n
+        = \sum_{n=0}^{\infty} c_n (z-z_0)^n\) where
+        \(c_n = \sum_{j=0}^{n} a_{j} b_{n-j}\)
+    \end{enumerate}
+
+    \paragraph{Derivatives of Power Series}
+    The derivative of the power series can be found by simply taking the 
+    sum of derivatives of each element. The derivative exists in the same
+    radius of convergence as the original function.
+    That is, for \(f(z) = \sum_{n=0}^{\infty} a_n (z-z_0)^n\),
+    \[f'(z) = \sum_{n=0}^{\infty}a_n n (z-z_0)^{n-1}.\]
+    An infinite power series of the form above may be differentiated infinitely.
+    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \section{Exponential, Hyperbolic and Trigonometric Function}
+    \subsection{The exponential function}
+
+    \paragraph{Definition}
+    We may define the exponential function with the following power series:
+    \[\exp(z) = \sum_{n=0}^{\infty} \frac{z^n}{n!} \quad\quad
+    \forall z\in\mathbb{C}.\]
+    If a function satisfies \(f(0) = 1\) and \(f'(z) = f(z)\) then, that 
+    function must be the exponential function.
+
+    \subsection{The hyperbolic functions}
+    We may define the hyperbolic functions with the following power series:
+    \[
+        \cosh(z) = \frac{e^z + e^{-z}}{2} = \sum_{n=0}^{\infty} \frac{z^{2n}}{(2n)!}
+    \]
+    and 
+    \[
+        \sinh(z) = \frac{e^z - e^{-z}}{2}
+        = \sum_{n=0}^{\infty} \frac{z^{2n+1}}{(2n+1)!}.
+    \]
+    Observe that
+    \begin{itemize}
+        \item \(\cos(iz) = \cosh(z)\)
+        \item \(\cosh(iz) = \cos(z)\)
+        \item \(\sin(iz) = i\sinh(z)\)
+        \item \(\sinh(iz) = i\sin(z)\)
+    \end{itemize}
+
+    \subsection{The trigonometric functions}
+    We may define the trigonometric functions with the following power series:
+    \[
+        \cos(z) = \frac{e^z + e^{-z}}{2} = \sum_{n=0}^{\infty} 
+        \frac{(-1)^n z^{2n}}{(2n+1)!}
+    \]
+    and,
+    \[ 
+        \sin(z) = \frac{e^z - e^{-z}}{2} = \sum_{n=0}^{\infty}
+        \frac{(-1)^n z^{2n}}{(2n+1)!}.
+    \]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+    \section{Logarithms and Roots}
+    \paragraph{Square Root}
+    We define the principle value of the square root as:
+    \[
+        PV w^{\frac{1}{2}} = \begin{cases}
+            |w|^\frac{1}{2} e^{i\mathrm{Arg}(w)/2} & \text{if \(w \neq 0\)} \\
+            0   & \text{if \(w = 0\).}
+        \end{cases}
+    \]
+    
+    \paragraph{n-th Roots}
+    The principle value of the \(n\)th root is given by 
+    \[
+        PV z^{1/n} = \exp\left(\frac{\mathrm{Log}(z)}{n}\right)
+        = |z|^\frac{1}{n} e^{\frac{i\mathrm{Arg(z)}}{n}}.
+    \]
+    The function \(PVz^{1/n}\) is differentiable in
+    \(\mathbb{C} \backslash (-\infty, 0].\)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \section{Inverses of exponential and related function}
+
+    \paragraph{Logarithm}
+    We define the complex logarithm as 
+    \[\log(z) = \ln(z) + \arg(z)i.\]
+    
+    \paragraph{Complex Powers}
+    We may define raising to a complex power \(\alpha\) as the following
+    \[ z^\alpha = \exp(\alpha \log (z).\]
+    That is,
+    \[z^\alpha = \exp(\alpha \ln|z| + i\mathrm{Arg}(z)\alpha + \alpha 2k\pi i,\]
+    where, \(k\) is an integer.
+    \newline \indent
+    The function \(z\mapsto PVz^\alpha\) is differentiable on 
+    \(\mathbb{C} \backslash (-\infty, 0).\)
+    
+    \paragraph{Inverse sinh}
+    We define the principal inverse of \(\sinh\) as 
+    \[PV \sinh^{-1} w = \mathrm{Log}(w + PV(w^2 + 1)^{1/2}).\]
+    \paragraph{Inverse cosh}
+    We define the principal inverse of \(\sinh\) as 
+    \[PV \cosh^{-1} w = \mathrm{Log}(w + PV(w + 1)^{1/2} PV (w-1)^{1/2}).\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    \section{Contour Integrals}
+    \paragraph{Definition}  A contour is an oriented range of a piece-wise
+    smooth curve in the complex plane.
+
+    \paragraph{Contour Integrals} Given a piecewise smooth curve
+    \(\gamma(t): [a, b] \to \mathbb{C}\) and a continuous (not necessarily differentiable)
+    function \(f\) defined on the range of \(\gamma\), we define the complex
+    line integral of \(f\) over \(gamma\) as
+    \[\int_{\gamma} f(z) dz = \int_{a}^{b} f(\gamma(t)) \gamma '(t)dt. \]
+
+    \paragraph{Properties}
+    \begin{itemize}
+        \item The integral is linear
+        \item The integral is independent of the parametrization
+        \item The integral is additive for joins
+        \item The integral is dependent of the orientation
+        \item The size of the integral depends on the size of the curve and function. See the ML lemma
+    \end{itemize}  
+
+    \paragraph{The ML Lemma}
+    \[|\int_\gamma f(z) dz \leq ML\]
+    where \(L\) is the length of \(\gamma\) and \(M\) is the maximizer.
+    That is, \(M\) is some number such that, for all \(z\in \mathrm{range}(\gamma),\) 
+    \(f(z) \leq M\).
+    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    \section{The Cauchy Goursat Theorem}
+
+    \paragraph{The Cauchy Goursat Theorem}
+    Suppose that \(\Omega\) is a simply connected domain such that
+    \(f\in H(\Omega)\) and that \(\Gamma\) is a closed contour in \(\Omega\).
+    Then,
+    \[\int_\Gamma f(z) dz = 0.\]
+    
+    \paragraph{Existence Of Primitives}
+    Suppose that \(\Omega\) is a simply connected domain in \(\mathbb{C}\)
+    and that \(f\in H(\Omega)\). Then, there exists a function \(F\) on
+    \(\Omega\) such that 
+    \[\int_\Gamma f(z) = F(q) - F(p)\]
+    for all contours in \(\Omega\) from \(p\) to \(q\).
+    Further, it is the case that \(F\) is differentiable and, \(F' = f\).
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
+
+    \section{Cauchy's Integral Formula}
+
+    \subsection{The integral formula}
+    
+    Suppose that \(\Omega\) is a simply connected domain in \(\mathbb{C}\),
+    that \(f\) is holomorphic on \(\Omega\), that \(\Gamma\) is a simply
+    connected domain and that \(w \in \mathrm{Int}(\Gamma)\).
+    Then,
+    \[ f(w) = \frac{1}{2\pi i} \int_\Gamma \frac{f(z)}{z-w}dz.\]
+    In other words, 
+    \[ \int_\Gamma \frac{f(z)}{z-w} = 2\pi i f(w).\]
+
+
+    \paragraph{Cauchy's Integral Formula with Power Series}
+    With the same conditions as above, where \(\Omega = B(z_0, R)\).
+    \[f(w) = \sum_{n=0}^{\infty} c_n (z-z_0)^n\]
+    where,
+    \[c_n = \frac{1}{2\pi i} \int_\Gamma \frac{f(z)}{(z-z_0)^n}dz \]
+    The radius of convergence is at least \(R\).
+
+    We may use this, combined with the fact that \(f^{(n)} (z_0) = n!c_n\)
+    to get Cauchy's Generalised Integral Formula.
+
+    \subsection{The Generalised Integral Formula}
+    
+    \paragraph{Cauchy's Generalised Integral Formula}
+    \[ f^{(n)} (z_0) = \frac{n!}{p\pi i} \int_\Gamma \frac{f(z)}{(z-z_0)^{n+1}}.\]
+
+    \paragraph{Liouville's Theorem} Suppose that \(f\) is a bounded entire  
+    function. Then, \(f\) is constant.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \section{Morera's Theorem and Analytic Continuation}
+
+    \paragraph{Morera's Theorem}
+    Suppose that \(\Omega\) is a domain and that the function
+    \(f: \Omega \to \mathbb{C}\) is continuous and that 
+    \[ \int_\Gamma f(z) dz = 0\]
+    whenever \(\Gamma\) is a closed contour in \(\Omega.\) Then,
+    \(f\) is holomorphic in \(Omega\).
+
+    \paragraph{Analytic Continuation}
+    Suppose that \(\Upsilon\) is a nonempty, open subset of a domain 
+    \(\Omega\) in \(\mathbb{C}\) and that \(f\in H(\Omega)\).
+    If \(f(z) = 0\) for all \(z\) in \(\Upsilon\) then, \(f(z) = 0\) for 
+    all \(z\) in \(\Omega\).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \section{Taylor Series}
+    A taylor series for the function \(f\) around \(z_0\) is of the form
+    \[\sum_{n=0}^{\infty} \frac{f^{(n)}(z_0)}{n!} (z-z_0)^n.\]
+    
+    \paragraph{Algebra and Calculus of Taylor Series}
+    The same rules that apply for power series, also apply for Taylor series.
+
+    \paragraph{Differentiability}
+    Suppose that the taylor series for \(f\) converges in a ball centered at
+    \(z_0\), of radius\(r\). Then \(f\) is differentiable on that same
+    domain.
+
+    \paragraph{Lagrange inversion theorem}
+    Suppose that \(f\) is holomorphic on \(\Omega\) and that 
+    \(f(a) = b\) and \(f'(a) \neq 0\).
+    Then, there is a holomorphic function \(g\) defined on an open set
+    \(\Upsilon\) containing \(b\) such that \(g\circ f(z) = z\) for all
+    \(z\) near \(a\) and, \(f\circ g(w) = w\) for all \(w\) near b.
+    Further, \(g(w) = a + \sum_{n=1}^{\infty} c_n (w-b)^n \) where
+    \[c_n = \frac{1}{n!} \lim_{z\to a} \frac{d^{n-1}}{dz^{n-1}}\]
+    when \(n\geq 1\).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \section{Laurent's Theorem}
+    Suppose that \(A\) is the annulus
+    \(\{z\in \mathbb{C} : R_1 < |z-z_0| < R_2\}\) and
+    \(R_1 < r < R_2\). If \(f\) is holomorphic on \(A\) then,
+    \[ f(w) = \sum_{n=-\infty}^{\infty} c_n (w-z_0)^n
+    \quad \forall w\in A\] where
+    \[c_n = \frac{1}{2 \pi i} \int_{\partial B(z_0, r)}
+    \frac{f(z)}{(z-z_0)^{n+1}}.\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \section{Singularities}
+
+    \paragraph{Isolated Singularities}
+    A function has an \textit{isolated singularity} at \(z_0\)
+    in \(\mathbb{C}\) if \(f\) is holomorphic in the punctured ball 
+    \(B^\circ (z_0, R)\) for some \(R\in \mathbb{R}^+\) and, \(f\) is 
+    not differentiable at \(z_0\).
+
+    \paragraph{Types of Singularities and Zeroes}
+    If \(c_n = 0\) for all \(n\) in \( \mathbb{Z}\), then, \(f(z_0) = 0.\)
+    Otherwise, following examples are mutually exclusive and exhaustive
+
+    \begin{itemize}
+        \item There are infinitely many \(n\in \mathbb{Z}^-\) such that \(c_n \neq 0\).
+        Then, \(z_0\) is an \textbf{essential} singularity.
+        \item There are no \(n\in \mathbb{Z}\) such that \(c_n \neq 0\).
+        Then, \(z_0\) is a removable singularity. Otherwise, if there exist
+        \(m\in \mathbb{Z}\) such that \(c_m \neq 0\) and \(c_n = 0\)
+        for all \(n < m\) then, \(f\) has a zero of order \(m\) at \(z_0\).
+        \item There is atleast one, but finitely many \(n\in \mathbb{Z}\)
+        such that \(c_n \neq 0\). Then there exists \(m\in \mathbb{Z}^-\)
+        such that \(c_m \neq 0\) and \(c_n = 0\) for all \(n < m\).
+        Then, \(f\) has a pole of order \(-M \)
+    \end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \section{Residues and Residue Theorem}
+    \subsection{Residues}
+    
+    \paragraph{Definition}
+    Suppose that the function \(f\) has an isolated singularity at \(z_0.\)
+    Then, \(f\) is holomorphic on some punctured ball \(B^\circ z_0\)
+    and, has a Laurent series there of form 
+    \(\sum_{n=-\infty}^{\infty} c_n (z-z_0)^n\). The residue of \(f\) at \(z_0\)
+    is written as:
+    \[\mathrm{Res}(f, z_0) = c_{-1}. \]
+
+    \paragraph{Laurent's Theorem Connection}
+    From Laurent's theorem, if \(f\) is holomorphic in the area
+    \(B^\circ (z_0, 0)\)
+    then, 
+    \[ \mathrm{Res}(f, z_0) = \frac{1}{2\pi i} \int_\Gamma f(z)dz.\]
+
+    
+    \subsection{Cauchy's Residue Theorem}
+    \paragraph{Residue Theorem}
+    Suppose that \(\Gamma\) is a simple, closed contour with the standard
+    orientation in a domain \(\Omega\) and \(f\in H(\Omega)\) and,
+    that \(\mathrm{Int}(\Gamma) \cap \Omega
+    = \mathrm{Int}(\Gamma) \backslash \{z_1, z_2, z_3, \dots, z_K \}.\)
+    Then,
+    \[ \int_\Gamma f(z)dz = 2\pi i \sum_{k=1}^{K} \mathrm{Res}(f, z_k).\]
+    
+    \subsection{Computing Singularities}
+    Suppose that \(f\) has an isolated singularity at the point \(z_0\).
+    The, there are a few ways to computer the residue at \(z_0\), depending
+    on the type of singularity.
+
+    \paragraph{Removable Singularity}
+    The residue of removable singularities is zero.
+    \paragraph{Essential Singularities}
+    There is no formulaic method to compute residues at essential
+    singularities. A possible approach may be to consider integration, or
+    manipulation of series.
+    \paragraph{Poles of non-zero order}
+    Suppose that \(f\) has a pole of order \(N\) at \(z_0\). Then,
+    \[ \mathrm{Res}(f, z_0) = \frac{1}{(N-1)!} 
+    \lim_{z\to z_0} \frac{d^{N-1}}{dz^{N-1}} (z-z_0)^N f(z).\]
+
+    \paragraph{The p/q' formula}
+    Suppose that \(f(z) = \frac{p(z)}{q(z)}\) in \(\Omega\) and that 
+    \(p(z) \neq 0,\) while \(q(z) = 0\). If \(z_0\) is a simple pole of
+    order \(1\) then,
+    \[ \mathrm{Res}(f, z_0) = \frac{p(z_0)}{q'(z_0)}.\]
+    
+    
+
+\end{document}
+
